@@ -1,10 +1,11 @@
 #include"libwritable.h"
+#include"unistd.h"
 
 bool	writable_writeone(t_writable *self, char c)
 {
 	size_t	current_size;
 
-	current_size = dst.buffer - self->buffer_start;
+	current_size = self->dst.buffer - self->buffer_start;
 	if (self->is_buffer)
 	{
 		if (!(current_size > self->buffer_capacity))

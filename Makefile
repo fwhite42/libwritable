@@ -1,4 +1,5 @@
 NAME	:= writable
+
 METHODS	:=			\
 	realloc			\
 	realloc_and_free	\
@@ -7,14 +8,10 @@ METHODS	:=			\
 	writestr
 
 MK	:= ../mk
+include $(MK)/c.mk
 include	$(MK)/ar.mk
 include	$(MK)/targets.mk
+include	$(MK)/cleaners.mk
 
 all: library
-
-clean:
-	$(RM) $(OBJECTS)
-
-fclean: clean
-
 re: fclean all
