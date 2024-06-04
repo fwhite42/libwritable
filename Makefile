@@ -3,6 +3,7 @@ NAME	:= writable
 METHODS	:=			\
 	realloc			\
 	realloc_and_free	\
+	init			\
 	writeone		\
 	writemany		\
 	writestr
