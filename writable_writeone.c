@@ -1,24 +1,27 @@
-#include"libwritable.h"
-#include"unistd.h"
+#include"libwritable-core.h"
+#include<unistd.h>
+#include<stdlib.h>
+#include<stdio.h>
 
 bool	writable_writeone(t_writable *self, char c)
 {
-	size_t	current_size;
-
-	current_size = self->dst.buffer - self->buffer_start;
-	if (self->is_buffer)
+	if (self->isbuf)
 	{
-		if (!(current_size > self->buffer_capacity))
+		if (self->dst.buf->offset >= self->dst.buf->capacity)
 		{
-			writable_realloc_and_free(self);
+			if (self->dst.buf->requires_free_after_use)
+				free(writable_realloc(self));
+			else
+				writable_realloc(self);
 		}
-		*(self->dst.buffer) = c;
-		self->dst.buffer++;
+		self->dst.buf->buffer[self->dst.buf->offset] = c;
+		self->dst.buf->offset++;
 	}
 	else
 	{
 		if (write(self->dst.fd, &c, 1) != 1)
 			return (false);
 	}
+	self->blen++;
 	return (true);
 }

@@ -6,7 +6,9 @@ METHODS	:=			\
 	init			\
 	writeone		\
 	writemany		\
-	writestr
+	writestr		\
+	destroy
+
 
 MK	:= ../mk
 include $(MK)/c.mk
