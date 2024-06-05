@@ -7,6 +7,7 @@ METHODS	:=			\
 	writeone		\
 	writemany		\
 	writestr		\
+	writeull		\
 	destroy
 
 
